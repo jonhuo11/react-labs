@@ -1,3 +1,8 @@
+# react-labs
+
+Repo containing components, hooks, etc I created for the purposes of learning React or testing a UI design idea for an actual project.
+I use [Storyboard](https://storybook.js.org/) to help write, test, and debug UI in this repo.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
