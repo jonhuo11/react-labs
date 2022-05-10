@@ -1,0 +1,28 @@
+.basicborder {
+    border: solid;
+    border-width: 1px;
+    border-color: black;
+    padding: 3px;
+    margin: 2px;
+}
+
+.videoSourceBlock {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.subblock {
+    flex-grow: 1;
+}
+
+#selectorcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+#addsourcebutton {
+    align-self: flex-end;
+    margin: 5px 0px;
+}
