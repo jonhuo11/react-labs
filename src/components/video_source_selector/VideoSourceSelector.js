@@ -4,7 +4,7 @@ import {v4 as uuidv4} from "uuid";
 import PropTypes from "prop-types";
 
 import "./index.css";
-import VideoSourceBlock from "./VideoSourceBlock";
+import VideoSourceRowDisplay from "./VideoSourceRowDisplay";
 
 /*
     videosourcemodel
@@ -17,11 +17,18 @@ import VideoSourceBlock from "./VideoSourceBlock";
 class VideoSourceModel {
     static shortNames = ["alpha", "beta", "charlie", "delta", "echo", "foxtrot","gamma","hotel","india","joker","sigma","zeta","coriander","lettuce","beetroot","pineapple","pear","neptune","jupiter"];
 
+    static SourceTypes = {
+        URL: 0,
+        FILE: 1,
+        CAMERA: 2
+    };
+
     constructor(args) {
         this.id = args.id || undefined;
         this.name = args.name || `new source ${Date.now()} ${VideoSourceModel.shortNames[Math.floor(Math.random() * VideoSourceModel.shortNames.length)]}`;
         this.location = args.location || "unknown location";
-        this.source = args.source || "unknown source";
+        this.type = args.type || VideoSourceModel.SourceTypes.URL;
+        this.source = args.source || "http://unspecifiedurl.com/";
     }
 
     /*
@@ -33,6 +40,7 @@ class VideoSourceModel {
             id: this.id,
             name: this.name,
             location: this.location,
+            type: this.type,
             source: this.source
         };
     }
@@ -114,7 +122,34 @@ const VideoSourceSelector = ({parsedNodeConfig}) => {
     };
 
     const onChangeLocation = (newLoc, id) => {
+        if (id in sources) {
+            setSources(produce((draft) => {
+                draft[id].location = newLoc;
+                return draft;
+            }))
+        } else {
+            console.log(`could not find ${id} in sources`);
+        }
+    };
 
+    // this is passed all the way down to videosourceeditor
+    /*
+        newSrc
+        {
+            source: string, 
+            type: VideoSourceModel.SourceTypes enum
+        }
+    */
+    const onChangeSource = (newSrc, id) => {
+        if (id in sources) {
+            setSources(produce((draft) => {
+                draft[id].type = newSrc.type;
+                draft[id].source = newSrc.source;
+                return draft;
+            }));
+        } else {
+            console.log(`could not find ${id} in sources`);
+        }
     };
 
     // each row in the table
@@ -123,11 +158,12 @@ const VideoSourceSelector = ({parsedNodeConfig}) => {
         for (var key in sources) {
             const s = sources[key];
             blocks.push(
-                <VideoSourceBlock
+                <VideoSourceRowDisplay
                     key={`${blocks.length + 1}`}
                     videoSourceModel={s}
                     onChangeName={onChangeName}
                     onChangeLocation={onChangeLocation}
+                    onChangeSource={onChangeSource}
                     onDelete={onDeleteVideoSource}
                 />
             );

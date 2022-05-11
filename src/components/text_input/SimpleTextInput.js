@@ -3,9 +3,13 @@
     onUpdate
     (newValue) => {...}
 */
-const SimpleTextInput = ({text, onChange}) => {
+const SimpleTextInput = ({text, onChange, style={}, enable=true}) => {
 
     const onChangeVal = (e) => {
+        if (onChange == undefined) {
+            console.log("no onChange handler given for SimpleTextInput");
+            return;
+        }
         onChange(e);
     }
 
@@ -20,8 +24,11 @@ const SimpleTextInput = ({text, onChange}) => {
                 type="text"
                 value={text}
                 onChange={onChangeVal}
+                disabled={!enable}
                 style={{
-                    width:"100%"
+                    ...style,
+                    width:"100%",
+                    textAlign:"center"
                 }}
             ></input>
         </div>

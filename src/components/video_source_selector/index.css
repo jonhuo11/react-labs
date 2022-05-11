@@ -7,6 +7,14 @@
     flex-grow: 1;
 }
 
+.clearborder {
+    border: none;
+    flex-grow: 1;
+    padding: 3px;
+    margin: 2px;
+    flex-grow: 1;
+}
+
 .videoSourceBlock {
     display: flex;
     flex-direction: row;
@@ -15,6 +23,30 @@
 
 .subblock {
     width:30%;
+    margin:1.5px;
+    display: flex;
+}
+
+
+#sourceEditorBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#editSourceContainer {
+    display:flex;
+    flex-grow: 0;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.centertxt {
+    text-align: center;
+}
+
+#sourceLocationContainer {
+    flex-grow: 1;
 }
 
 #selectorcontainer {

@@ -2,21 +2,22 @@
     a single row within the selector
 */
 
+import VideoSourceEditor from "./VideoSourceEditor";
 import SimpleTextInput from "../text_input/SimpleTextInput";
 import { useEffect } from "react";
-import { VideoSourceModel } from "./VideoSourceSelector";
 
 
-const VideoSourceBlock = ({
+const VideoSourceRowDisplay = ({
     videoSourceModel,
     onChangeName,
     onChangeLocation,
+    onChangeSource,
     onDelete
 }) => {
 
     // for logging/debugging purposes
     useEffect(()=>{
-        //console.log(videoSourceModel.id, " sourceModel changed");
+        console.log(videoSourceModel.id, " sourceModel changed");
     }, [videoSourceModel]);
 
     const onChangeLocationCb = (e) => {
@@ -27,6 +28,10 @@ const VideoSourceBlock = ({
         //console.log(e.target.value);
         onChangeName(e.target.value, videoSourceModel.id);
     };
+    
+    const onChangeSourceCb = (newSrcVal) => {
+        onChangeSource(newSrcVal, videoSourceModel.id);
+    };
 
     const onDeleteCb = () => {
         onDelete(videoSourceModel.id);
@@ -35,25 +40,35 @@ const VideoSourceBlock = ({
     return (
         <div className="videoSourceBlock">
 
-            <div className="basicborder subblock">
+            <div className="subblock">
                 <SimpleTextInput
                     text={videoSourceModel.name}
                     onChange={onChangeNameCb}
                 />
             </div>
 
-            <div className="basicborder subblock">
-            <SimpleTextInput
+            <div className="subblock">
+                <SimpleTextInput
                     text={videoSourceModel.location}
                     onChange={onChangeLocationCb}
                 />
             </div>
 
-            <div className="basicborder subblock">
-                <p>source WIP</p>
+            <div className="subblock">
+                
+                <VideoSourceEditor
+                    videoSourceModel={videoSourceModel}
+                    onChangeSource={onChangeSourceCb}
+                />
+
             </div>
 
-            <div className="basicborder">
+            <div className="clearborder" style={{
+                display:"flex",
+                flexDirection:"column",
+                alignContent:"center",
+                justifyContent:"center"
+            }}>
                 <button onClick={onDeleteCb}>delete</button>
             </div>
 
@@ -62,4 +77,4 @@ const VideoSourceBlock = ({
 };
 
 
-export default VideoSourceBlock;
+export default VideoSourceRowDisplay;
