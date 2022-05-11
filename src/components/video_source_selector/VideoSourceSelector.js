@@ -142,6 +142,16 @@ const VideoSourceSelector = ({parsedNodeConfig}) => {
     */
     const onChangeSource = (newSrc, id) => {
         if (id in sources) {
+            var flag = false;
+            for (var k in VideoSourceModel.SourceTypes) {
+                if (VideoSourceModel.SourceTypes[k] == newSrc.type) {
+                    flag = true;
+                }
+            }
+            if (flag == false) {
+                console.log("invalid source type");
+            }
+
             setSources(produce((draft) => {
                 draft[id].type = newSrc.type;
                 draft[id].source = newSrc.source;

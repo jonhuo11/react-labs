@@ -3,7 +3,7 @@
     onUpdate
     (newValue) => {...}
 */
-const SimpleTextInput = ({text, onChange, style={}, enable=true}) => {
+const SimpleTextInput = ({text, onChange, style={}, disabledStyle={},enable=true}) => {
 
     const onChangeVal = (e) => {
         if (onChange == undefined) {
@@ -25,11 +25,23 @@ const SimpleTextInput = ({text, onChange, style={}, enable=true}) => {
                 value={text}
                 onChange={onChangeVal}
                 disabled={!enable}
-                style={{
-                    ...style,
-                    width:"100%",
-                    textAlign:"center"
-                }}
+                style={
+
+                    enable ? (
+                        {
+                            ...style,
+                            width:"100%",
+                            textAlign:"center"
+                        }
+                    ) : (
+                        {
+                            ...disabledStyle,
+                            border: "none",
+                            width:"100%",
+                            textAlign: "center"
+                        }
+                    )
+                }
             ></input>
         </div>
     );

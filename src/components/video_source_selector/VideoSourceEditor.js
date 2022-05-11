@@ -2,7 +2,7 @@
     allows choosing video source, from filesystem or url
 */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SimpleTextInput from "../text_input/SimpleTextInput";
 
 import { VideoSourceModel } from "./VideoSourceSelector";
@@ -23,10 +23,11 @@ import { VideoSourceModel } from "./VideoSourceSelector";
 */
 const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
 
-    // if textinput is enabled, the sourceProvider becomes the textinput
-    // otherwise sourceProvider can be the file system or something
-    // source changes live wont affect watchman-server since there is big submit form button later
-    const [sourceProvider, setSourceProvider] = useState(videoSourceModel.source);
+    // calculates if textinput should be enabled
+    const shouldEnableLocationTextInput = () => {
+        return videoSourceModel.type == VideoSourceModel.SourceTypes.URL;
+    };
+
 
     const [enableLocationTextInput, setEnableLocationTextInput] = useState(shouldEnableLocationTextInput());
     
@@ -35,15 +36,29 @@ const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
         if its a url, edit will enable the simpletextinput
     */
     const onEdit = () => {
-        // first update the state in videosourceselector
+
+        alert("edit");
+
+    };
+
+    /*
+        when a new source type is selected, use onChangeSource to change source type
+    */
+    const onChangeSourceType = (evt) => {
+        const selectedType = evt.target.value;
+        console.log(`new source type ${selectedType}`);
+
         onChangeSource({
-            source: sourc
+            source: "unspecified",
+            type: selectedType
         });
     };
-    // calculates if textinput should be enabled
-    const shouldEnableLocationTextInput = () => {
-        return videoSourceModel.type == videoSourceModel.type.URL;
-    };
+
+    // on update
+    useEffect(()=>{
+        // update enable/disable text input
+        setEnableLocationTextInput(shouldEnableLocationTextInput());
+    }, [videoSourceModel]);
 
     return (
         <div className="basicborder" id="sourceEditorBlock">
@@ -57,7 +72,7 @@ const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
             <div
                 id="editSourceContainer"
             >
-                <select value={videoSourceModel.type} onChange={onChangeSource}>
+                <select value={videoSourceModel.type} onChange={onChangeSourceType}>
                     <option value={VideoSourceModel.SourceTypes.FILE}>File</option>
                     <option value={VideoSourceModel.SourceTypes.URL}>URL</option>
                     <option value={VideoSourceModel.SourceTypes.CAMERA}>Camera</option>
