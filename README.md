@@ -1,7 +1,7 @@
 # react-labs
 
 Repo containing components, hooks, etc I created for the purposes of learning React or testing a UI design idea for an actual project.
-I use [Storyboard](https://storybook.js.org/) to help write, test, and debug UI in this repo.
+I use [Storybook](https://storybook.js.org/) to help write, test, and debug UI in this repo. Install Storybook then run the command `npm run storybook` from the root directory of this project to start Storybook.
 
 # Getting Started with Create React App
 
