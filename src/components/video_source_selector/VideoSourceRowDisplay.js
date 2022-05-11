@@ -44,6 +44,9 @@ const VideoSourceRowDisplay = ({
                 <SimpleTextInput
                     text={videoSourceModel.name}
                     onChange={onChangeNameCb}
+                    style={{
+                        borderRadius:"0px"
+                    }}
                 />
             </div>
 
@@ -51,6 +54,9 @@ const VideoSourceRowDisplay = ({
                 <SimpleTextInput
                     text={videoSourceModel.location}
                     onChange={onChangeLocationCb}
+                    style={{
+                        borderRadius:"0px"
+                    }}
                 />
             </div>
 

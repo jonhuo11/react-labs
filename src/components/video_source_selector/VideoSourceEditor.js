@@ -61,11 +61,14 @@ const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
     }, [videoSourceModel]);
 
     return (
-        <div className="basicborder" id="sourceEditorBlock">
+        <div id="sourceEditorBlock">
             <div id="sourceLocationContainer">
                 <SimpleTextInput
                     text={videoSourceModel.source}
                     enable={enableLocationTextInput}
+                    style={{
+                        borderRadius:"0px"
+                    }}
                 />
             </div>
 
@@ -78,9 +81,13 @@ const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
                     <option value={VideoSourceModel.SourceTypes.CAMERA}>Camera</option>
                 </select>
 
-                <button onClick={onEdit}>
-                    Edit
-                </button>
+                {   
+                    !enableLocationTextInput ? (
+                        <button onClick={onEdit} style={{width:"100%"}}>
+                            Edit
+                        </button>
+                    ) : null
+                }
 
             </div>
 
