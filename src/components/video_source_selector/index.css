@@ -4,16 +4,17 @@
     border-color: black;
     padding: 3px;
     margin: 2px;
+    flex-grow: 1;
 }
 
 .videoSourceBlock {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .subblock {
-    flex-grow: 1;
+    width:30%;
 }
 
 #selectorcontainer {
@@ -25,4 +26,9 @@
 #addsourcebutton {
     align-self: flex-end;
     margin: 5px 0px;
+}
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
 }

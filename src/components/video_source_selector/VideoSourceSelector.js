@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect} from "react";
 import produce from "immer";
 import {v4 as uuidv4} from "uuid";
+import PropTypes from "prop-types";
 
 import "./index.css";
 import VideoSourceBlock from "./VideoSourceBlock";
@@ -14,7 +15,7 @@ import VideoSourceBlock from "./VideoSourceBlock";
     }
 */
 class VideoSourceModel {
-    static shortNames = ["alpha", "beta", "charlie", "delta", "echo", "foxtrot","twitch","nasus","renekton","aatrox","jax","viego","ashe"];
+    static shortNames = ["alpha", "beta", "charlie", "delta", "echo", "foxtrot","gamma","hotel","india","joker","sigma","zeta","coriander","lettuce","beetroot","pineapple","pear","neptune","jupiter"];
 
     constructor(args) {
         this.id = args.id || undefined;
@@ -22,10 +23,23 @@ class VideoSourceModel {
         this.location = args.location || "unknown location";
         this.source = args.source || "unknown source";
     }
+
+    /*
+        NOTE: weird bug with immer, using a js object breaks produce whereas using a json object
+        does not. Use toJSON() to convert model to a JSON before adding to state
+    */
+    toJSON() {
+        return {
+            id: this.id,
+            name: this.name,
+            location: this.location,
+            source: this.source
+        };
+    }
 }
 
 // takes raw streamproc node config for VideoSource and converts it to something useful
-const ParseNodeConfig = (nodeConfig) => {
+const ParseNodeConfigToRawJSON = (nodeConfig) => {
 
 };
 
@@ -46,7 +60,7 @@ const VideoSourceSelector = ({parsedNodeConfig}) => {
 
     const [activeSourceKey, setActiveSourceKey] = useState(undefined);
 
-    const [sources, setSources] = useState(parsedNodeConfig.sources);
+    const [sources, setSources] = useState(parsedNodeConfig.sources || {});
 
     // if current active source deleted, just get a random one
     const getDefaultActiveSource = () => {
@@ -57,17 +71,51 @@ const VideoSourceSelector = ({parsedNodeConfig}) => {
         setActiveSourceKey(evt.target.value);
     };
 
-    const onAddVideoSource = useCallback(()=>{
+    const onAddVideoSource = () => {
         //console.log(sources);
         setSources(
             produce((draft) => {
                 const id = uuidv4();
                 draft[id] = new VideoSourceModel({
                     id: id
-                });
+                }).toJSON();
             })
         );
-    }, []);
+    };
+
+    const onDeleteVideoSource = (id) => {
+        if (id in sources) {
+            setSources(produce((draft)=>{
+                delete draft[id];
+            }));
+        } else {
+            console.log(`could not find ${id} in sources`);
+        }
+    };
+
+    /*
+        changes name of video source to a new name, this function is fed into videosourceblock --> simpletextinput
+    */
+    const onChangeName = (newName, id) => {
+        if (id in sources) {
+            setSources(produce((draft) => {
+                draft[id].name = newName;
+                return draft;
+            }));
+
+            /*
+            setSources({
+                ...sources,
+                [id]: new VideoSourceModel({id: id, name: newName || "", location: sources[id].location, source: sources[id].source})
+            });*/
+        } else {
+            console.log(`could not find ${id} in sources`);
+        }
+    };
+
+    const onChangeLocation = (newLoc, id) => {
+
+    };
 
     // each row in the table
     const generateVideoSourceBlocks = () => {
@@ -78,7 +126,9 @@ const VideoSourceSelector = ({parsedNodeConfig}) => {
                 <VideoSourceBlock
                     key={`${blocks.length + 1}`}
                     videoSourceModel={s}
-                    removeCb={setSources}
+                    onChangeName={onChangeName}
+                    onChangeLocation={onChangeLocation}
+                    onDelete={onDeleteVideoSource}
                 />
             );
         }
@@ -103,7 +153,7 @@ const VideoSourceSelector = ({parsedNodeConfig}) => {
     // on change of sources: add, remove, edit
     useEffect(()=>{
 
-        console.log(sources);
+        //console.log(sources);
 
         /*
             active key removed as a source: sets it to new one
@@ -122,12 +172,15 @@ const VideoSourceSelector = ({parsedNodeConfig}) => {
                 <label>
                     Select active video source
                     <br/>
-                    <select
-                        value={activeSourceKey}
-                        onChange={onChangeActiveSource}
-                    >
-                        {generateActiveSourceOptions()}
-                    </select>
+                    {Object.keys(sources).length > 0 ?
+                        <select
+                            value={activeSourceKey}
+                            onChange={onChangeActiveSource}
+                        >
+                            {generateActiveSourceOptions()}
+                        </select>
+                        : "(no sources registered)"
+                    }
                 </label>
             </form>
 
@@ -142,4 +195,11 @@ const VideoSourceSelector = ({parsedNodeConfig}) => {
     );
 };
 
-export {VideoSourceModel, ParseNodeConfig, VideoSourceSelector};
+/*
+VideoSourceSelector.propTypes = {
+    parsedNodeConfig : PropTypes.shape({
+        sources : PropTypes.objectOf(PropTypes.instanceOf(VideoSourceModel))
+    }).isRequired
+};*/
+
+export {VideoSourceModel, ParseNodeConfigToRawJSON, VideoSourceSelector};
