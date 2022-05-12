@@ -37,7 +37,18 @@ const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
     */
     const onEdit = () => {
 
-        alert("edit");
+        switch(videoSourceModel.type) {
+            // open file browser
+            case VideoSourceModel.SourceTypes.FILE:
+                console.log("opening file system...");
+                break;
+            // open device camera select
+            case VideoSourceModel.SourceTypes.CAMERA:
+                console.log("opening live camera feed selection...");
+                break;
+            default:
+                return;
+        }
 
     };
 
@@ -51,6 +62,14 @@ const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
         onChangeSource({
             source: "unspecified",
             type: selectedType
+        });
+    };
+
+    // changing text for url
+    const onChangeURLText = (evt) => {
+        onChangeSource({
+            type:videoSourceModel.type,
+            source:evt.target.value
         });
     };
 
@@ -69,6 +88,9 @@ const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
                     style={{
                         borderRadius:"0px"
                     }}
+                    onChange={
+                        onChangeURLText
+                    }
                 />
             </div>
 

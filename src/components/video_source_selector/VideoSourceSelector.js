@@ -182,6 +182,9 @@ const VideoSourceSelector = ({parsedNodeConfig}) => {
     };
 
     // each source option
+    /*
+        only allow selection of option if it has a valid source 
+    */
     const generateActiveSourceOptions = () => {
         var options = [];
         for (var id in sources) {
@@ -231,6 +234,17 @@ const VideoSourceSelector = ({parsedNodeConfig}) => {
             </form>
 
             <div className="basicborder">
+
+                {Object.keys(sources).length > 0 ? (
+                    <div style={{
+                        display:"flex",
+                        flexDirection:"row"
+                    }}>
+                        <p className="subblock centertxt">Source name</p>
+                        <p className="subblock centertxt">Physical location</p>
+                        <p className="subblock centertxt">Data source</p>
+                    </div>
+                ) : null }
 
                 {generateVideoSourceBlocks()}
 

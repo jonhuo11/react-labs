@@ -38,6 +38,7 @@ const SimpleTextInput = ({text, onChange, style={}, disabledStyle={},enable=true
                             ...disabledStyle,
                             border: "none",
                             width:"100%",
+                            color:"black",
                             textAlign: "center"
                         }
                     )
