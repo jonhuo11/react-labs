@@ -3,6 +3,8 @@
 Repo containing components, hooks, etc I created for the purposes of learning React or testing a UI design idea for an actual project.
 I use [Storybook](https://storybook.js.org/) to help write, test, and debug UI in this repo. Install Storybook then run the command `npm run storybook` from the root directory of this project to start Storybook.
 
+Note: make sure to use Node v16.15.0 with storybook
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
