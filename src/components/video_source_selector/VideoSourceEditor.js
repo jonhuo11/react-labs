@@ -3,6 +3,7 @@
 */
 
 import { useEffect, useState } from "react";
+import ArrayOptionSelect from "../array_option_select/ArrayOptionSelect";
 import SimpleTextInput from "../text_input/SimpleTextInput";
 
 import { VideoSourceModel } from "./VideoSourceSelector";
@@ -34,7 +35,7 @@ const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
     /*
         behaviour of edit button depends on selected source type
         if its a url, edit will enable the simpletextinput
-    */
+    
     const onEdit = () => {
 
         switch(videoSourceModel.type) {
@@ -50,17 +51,17 @@ const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
                 return;
         }
 
-    };
+    };*/
 
     /*
         when a new source type is selected, use onChangeSource to change source type
     */
     const onChangeSourceType = (evt) => {
         const selectedType = evt.target.value;
-        console.log(`new source type ${selectedType}`);
+        console.log(`changed source type to ${selectedType}`);
 
         onChangeSource({
-            source: "unspecified",
+            source: "unspecified", // changes source as well
             type: selectedType
         });
     };
@@ -73,15 +74,26 @@ const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
         });
     };
 
-    // on update
+    // when video source model changes
     useEffect(()=>{
         // update enable/disable text input
         setEnableLocationTextInput(shouldEnableLocationTextInput());
+
+        // source type changed, fetch and set video list
+        /*
+        if (videoSourceModel.type == VideoSourceModel.SourceTypes.FILE) {
+            // TODO
+        }*/
     }, [videoSourceModel]);
 
-    return (
-        <div id="sourceEditorBlock">
-            <div id="sourceLocationContainer">
+    // render the proper source input
+    const GetSourceInputComponent = () => {
+
+        //console.log(`input component changes, current type is ${videoSourceModel.type}`);
+        
+        if (videoSourceModel.type == VideoSourceModel.SourceTypes.URL) {
+            //console.log("showing url sourcetype input");
+            return (
                 <SimpleTextInput
                     text={videoSourceModel.source}
                     enable={enableLocationTextInput}
@@ -92,6 +104,18 @@ const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
                         onChangeURLText
                     }
                 />
+            );
+        } else {
+            return <div></div>
+        }
+    };
+
+    return (
+        <div id="sourceEditorBlock">
+            <div id="sourceLocationContainer">
+
+                    {GetSourceInputComponent()}
+
             </div>
 
             <div
@@ -103,13 +127,13 @@ const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
                     <option value={VideoSourceModel.SourceTypes.CAMERA}>Camera</option>
                 </select>
 
-                {   
+                {/*
                     !enableLocationTextInput ? (
                         <button onClick={onEdit} style={{width:"100%"}}>
                             Edit
                         </button>
                     ) : null
-                }
+                */}
 
             </div>
 

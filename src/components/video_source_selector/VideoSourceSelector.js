@@ -199,6 +199,30 @@ const VideoSourceSelector = ({parsedNodeConfig}) => {
         return options;
     };
 
+    /*
+        gets video list from server
+        GET request, should return a list of newline separated data paths
+        saves to redux store???
+    */
+    /*
+    const FetchVideoList = () => {
+        const apiurl = "localhost:2003/listvideos"; // NOTE: Change this
+        fetch(apiurl, {
+            method:"GET"
+        }).then((res) => {
+            if (res.ok && res.headers["Content-Type"] == "text/plain") {
+                const l = res.body.split("\n");
+                console.log(l);
+                return l;
+            } else {
+                throw new Error("bad response");
+            }
+        }).catch((err) => {
+            console.error(err);
+        });
+    };
+    */
+
     // on change of sources: add, remove, edit
     useEffect(()=>{
 

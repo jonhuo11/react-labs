@@ -1,9 +1,28 @@
+import {useEffect, useState} from "react";
+
+import ArrayOptionSelect from "../../components/array_option_select/ArrayOptionSelect";
 import {VideoSourceSelector} from "../../components/video_source_selector/VideoSourceSelector";
 
 const VideoSourceContainer = () => {
 
+    const [chosen, setChosen] = useState("kogmaw");
+
+    useEffect(() => {
+        console.log(chosen);
+    }, [chosen]);
+
     return (
         <div>
+            <ArrayOptionSelect
+                optionsArray={["twitch","kogmaw","lulu"]}
+                chosen={chosen}
+                onChange={(newChoice)=>{
+                    setChosen(newChoice);
+                }}
+            ></ArrayOptionSelect>
+
+            <div style={{height:"50px"}}></div>
+
             <VideoSourceSelector
                 parsedNodeConfig={{
                     sources: {}
