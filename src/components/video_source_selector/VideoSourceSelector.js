@@ -256,19 +256,29 @@ const VideoSourceSelector = ({parsedNodeConfig}) => {
                     }
                 </label>
             </form>
+            
+            <div id="sourcesTable">
+                
+                <div id="tableHeader">
+                    <p>Video sources</p>
+                </div>
 
-            <div className="basicborder">
+                <div id="columnHeadersContainer">
+                    <p className="subblock columnHeaderSubblock">Source name</p>
+                    <p className="subblock columnHeaderSubblock">Physical location</p>
+                    <p className="subblock columnHeaderSubblock">Data source</p>
 
-                {Object.keys(sources).length > 0 ? (
-                    <div style={{
+                    <div className="clearborder" style={{
                         display:"flex",
-                        flexDirection:"row"
+                        flexDirection:"row",
+                        alignContent:"center",
+                        justifyContent:"center",
+                        visibility:"hidden"
                     }}>
-                        <p className="subblock centertxt">Source name</p>
-                        <p className="subblock centertxt">Physical location</p>
-                        <p className="subblock centertxt">Data source</p>
+                        <button>edit</button>
+                        <button>delete</button>
                     </div>
-                ) : null }
+                </div>
 
                 {generateVideoSourceBlocks()}
 

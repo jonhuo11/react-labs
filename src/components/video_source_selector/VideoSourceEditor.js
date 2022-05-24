@@ -114,14 +114,18 @@ const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
         <div id="sourceEditorBlock">
             <div id="sourceLocationContainer">
 
-                    {GetSourceInputComponent()}
+                {GetSourceInputComponent()}
 
             </div>
 
             <div
                 id="editSourceContainer"
             >
-                <select value={videoSourceModel.type} onChange={onChangeSourceType}>
+                <select
+                    value={videoSourceModel.type}
+                    onChange={onChangeSourceType}
+                    
+                >
                     <option value={VideoSourceModel.SourceTypes.FILE}>File</option>
                     <option value={VideoSourceModel.SourceTypes.URL}>URL</option>
                     <option value={VideoSourceModel.SourceTypes.CAMERA}>Camera</option>

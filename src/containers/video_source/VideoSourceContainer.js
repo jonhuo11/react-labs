@@ -5,7 +5,7 @@ import {VideoSourceSelector} from "../../components/video_source_selector/VideoS
 
 const VideoSourceContainer = () => {
 
-    const [chosen, setChosen] = useState("kogmaw");
+    const [chosen, setChosen] = useState("a");
 
     useEffect(() => {
         console.log(chosen);
@@ -14,7 +14,7 @@ const VideoSourceContainer = () => {
     return (
         <div>
             <ArrayOptionSelect
-                optionsArray={["twitch","kogmaw","lulu"]}
+                optionsArray={["a","b","c"]}
                 chosen={chosen}
                 onChange={(newChoice)=>{
                     setChosen(newChoice);

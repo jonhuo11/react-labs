@@ -71,10 +71,11 @@ const VideoSourceRowDisplay = ({
 
             <div className="clearborder" style={{
                 display:"flex",
-                flexDirection:"column",
+                flexDirection:"row",
                 alignContent:"center",
                 justifyContent:"center"
             }}>
+                <button>edit</button>
                 <button onClick={onDeleteCb}>delete</button>
             </div>
 
