@@ -26,7 +26,10 @@ const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
 
     // calculates if textinput should be enabled
     const shouldEnableLocationTextInput = () => {
-        return videoSourceModel.type == VideoSourceModel.SourceTypes.URL;
+        if (videoSourceModel != undefined) {
+            return videoSourceModel.type == VideoSourceModel.SourceTypes.URL;
+        }
+        return false;
     };
 
 
@@ -90,6 +93,7 @@ const VideoSourceEditor = ({videoSourceModel, onChangeSource}) => {
     const GetSourceInputComponent = () => {
 
         //console.log(`input component changes, current type is ${videoSourceModel.type}`);
+        
         
         if (videoSourceModel.type == VideoSourceModel.SourceTypes.URL) {
             //console.log("showing url sourcetype input");

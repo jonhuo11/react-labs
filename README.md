@@ -1,9 +1,11 @@
 # react-labs
 
 Repo containing components, hooks, etc I created for the purposes of learning React or testing a UI design idea for an actual project.
-I use [Storybook](https://storybook.js.org/) to help write, test, and debug UI in this repo. Install Storybook then run the command `npm run storybook` from the root directory of this project to start Storybook.
 
-Note: make sure to use Node v16.15.0 with storybook
+I use [Storybook](https://storybook.js.org/) to help write, test, and debug UI in this repo. Install Storybook then run the command `npm run storybook` from the root directory of this project to start Storybook.
+Note: make sure to use Node v16.15.0 with Storybook
+
+Using `npm start` to run the app works by serving `App.tsx` but since this repo is meant for testing of components in isolation it is better to just ignore the workflow provided by Create-React-App and test components with Storybook. Add code to `App.tsx` to build the webpage served by `npm start`.
 
 # Getting Started with Create React App
 

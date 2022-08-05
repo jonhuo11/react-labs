@@ -1,0 +1,60 @@
+@font-face {
+    font-family: "RobotoRegular";
+    src: local("RobotoRegular"), url("../../../assets/fonts/Roboto-Regular.ttf") format("truetype");
+    font-weight:400;
+}
+
+
+.stackparent {
+    width:540px;
+    position:relative;
+    left:100px;
+}
+
+.stackchild {
+    width:100%;
+    height:80%;
+    position:absolute;
+    top:0; left:0;
+}
+
+.video-overlay {
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap:10%;
+}
+
+p {
+    margin:0px;
+}
+
+.video-overlay p {
+    color: white;
+    text-align: center;
+}
+
+.overlay-card-container {
+    border: 1px solid black;
+    background-color: white;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height:80%;
+    flex-basis:100px;
+    flex-shrink:1;
+}
+.overlay-card-container:hover{
+    background-color: #f6f6f6;
+}
+
+.overlay-card-container p {
+    color:black;
+    text-align:center;
+    font-family: "RobotoRegular";
+}
