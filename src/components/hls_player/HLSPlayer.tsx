@@ -1,5 +1,5 @@
 import {useState, useRef} from "react";
-import {IoRefresh} from "react-icons/io5";
+import {IoRefresh, IoCloseOutline} from "react-icons/io5";
 import {RiLiveFill} from "react-icons/ri";
 
 import "./index.css";
@@ -37,7 +37,7 @@ const HLSPlayer = () => {
             ref={videoRef}
             onEnded={onVideoEnd}
             onSeeked={onSeeked}
-            controls
+            controls={!showOverlay}
         >
             <source
                 // test video
@@ -66,6 +66,10 @@ const HLSPlayer = () => {
                     <RiLiveFill size={30} style={{marginTop:"10px"}}/>
                 </VideoOverlayCard>
                 
+            </div>
+
+            <div className="x-button" onClick={()=>{setShowOverlay(false);}}>
+                <IoCloseOutline size={"100%"}/>
             </div>
         </div>
         : <></> }
