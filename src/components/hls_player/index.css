@@ -4,11 +4,10 @@
     font-weight:400;
 }
 
-
 .stackparent {
     width:540px;
     position:relative;
-    left:100px;
+    
 }
 
 .stackchild {

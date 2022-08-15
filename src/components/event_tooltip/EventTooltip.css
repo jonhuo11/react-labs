@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "RobotoRegular";
+    src: local("RobotoRegular"), url("../../../assets/fonts/Roboto-Regular.ttf") format("truetype");
+    font-weight:400;
+}
+
+.event-tooltip-container {
+    font-family: "RobotoRegular";
+}
+
+.event-tooltip-container p {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+button {
+    pointer-events: all;
+    border-radius: 0px;
+    border: 1px solid black;
+    margin: 4px;
+    background-color: white;
+    width: 90%;
+    max-width: 200px;
+    font-size:12px;
+}
+button:hover {
+    background-color: #f2f2f2;
+}

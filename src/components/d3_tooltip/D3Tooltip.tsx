@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import {useEffect, useRef,} from "react";
 
-interface TooltipData {
+export interface TooltipData {
     count: number,
     data: string
 }
@@ -13,7 +13,7 @@ export default function D3Tooltip (props:{data:Array<TooltipData>}) {
     // drawing constants
     const colors = ["red", "black", "blue", "green", "purple", "grey", "orange"];
     const rectSizes = {width: 60, height: 20};
-    const rectY = 100;
+    const rectY = 20;
     const tooltipSizes = {width: 50};
 
     useEffect(() => {
@@ -50,9 +50,10 @@ export default function D3Tooltip (props:{data:Array<TooltipData>}) {
     return (
         <div
             style={{
-                height:"250px", width:"500px",
+                height:"50px", width:"500px",
                 position:"relative",
-                top:"100px"
+                top:"100px",
+                border:"1px solid black"
             }}
         >
             <svg
@@ -98,6 +99,8 @@ export default function D3Tooltip (props:{data:Array<TooltipData>}) {
                     pointerEvents:"none" // VERY IMPORTANT
                 }}
             >
+                <p>Event Breakdown</p>
+                <br/>
                 <p id="tooltip-text"></p>
             </div>
         </div>

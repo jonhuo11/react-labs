@@ -14,6 +14,7 @@ Test1.args = {
         {count : 5, data: "Loitering event"},
         {count : 24, data: "Boundary crossing"},
         {count : 13, data: "Boundary crossing"},
-        {count : 7, data: "Abandoned package"}
+        {count : 7, data: "Abandoned package"},
+        {count : 999, data: "Camera event"}
     ]
 };
