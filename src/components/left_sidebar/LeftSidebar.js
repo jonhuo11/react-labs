@@ -1,5 +1,5 @@
 
-const LeftSidebar = () => {
+const LeftSidebar = (props) => {
     return (
         <div style={{
             display:"flex",
@@ -15,8 +15,11 @@ const LeftSidebar = () => {
             }}></div>
 
             <div style={{
+                paddingLeft: '16px  '
             }}>
-                <p>lorem ipsum dolor</p>
+                <p>Sidebar content below</p>
+
+                {props.children}
             </div>
         </div>
     );
