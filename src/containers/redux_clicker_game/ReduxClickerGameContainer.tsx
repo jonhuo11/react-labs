@@ -1,5 +1,5 @@
 import {useAppDispatch} from "./ReduxClickerGameStore";
-import { selectInventory } from "./inventory/InventorySlice";
+import { makeRecipe, selectInventory } from "./inventory/InventorySlice";
 import { useAppSelector } from "./ReduxClickerGameStore";
 import { addIngredient } from "./inventory/InventorySlice";
 import { useState } from "react";
@@ -35,6 +35,7 @@ export const ReduxClickerGameContainer = () => {
         <br/>
         <button onClick={() => {
             alert(hasEnoughIngredientsForRecipe(inventory, dishToMake));
+            dispatch(makeRecipe(dishToMake))
         }}>Can I make this dish?</button>
         <select onChange={e => setDishToMake(e.target.value as DishNames)} defaultValue={"rat_curry"}>
             <option value="rat_curry">Rat curry</option>

@@ -64,8 +64,6 @@ const Dishes:DishesMap = {
     ]}
 };
 
-console.log(Dishes);
-
 export const hasEnoughIngredientsForRecipe = (inventory:InventoryState, recipe:DishNames):boolean => {
     let dm:any = {};
     for (var k in Dishes[recipe].ingredients) {
@@ -76,7 +74,7 @@ export const hasEnoughIngredientsForRecipe = (inventory:InventoryState, recipe:D
             dm[ic.type] += ic.qty;
         }
     }
-    console.log(dm);
+    //console.log(dm);
     for (k in dm) {
         let ic = dm[k];
         if ((inventory as any)[k] < ic) {
@@ -84,4 +82,13 @@ export const hasEnoughIngredientsForRecipe = (inventory:InventoryState, recipe:D
         }
     }
     return true;
+};
+
+export const consumeRecipeIngredients = (inventory:InventoryState, recipe:DishNames):InventoryState => {
+    let ing = Dishes[recipe].ingredients
+    for (var k in ing) {
+        let ingredient:IngredientCount = ing[k]
+        inventory[ingredient.type] -= ingredient.qty
+    }
+    return inventory
 };

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../ReduxClickerGameStore'
-import { Ingredients, DishNames} from './Recipes';
+import { Ingredients, DishNames, hasEnoughIngredientsForRecipe, consumeRecipeIngredients} from './Recipes';
 
 
 export type InventoryState = {
@@ -44,12 +44,9 @@ export const inventorySlice = createSlice({
             }
         },
         makeRecipe: (state, action:PayloadAction<DishNames>) => {
-            switch(action.payload) {
-                case 'fish_curry':
-                    break;
-                default:
-                    alert("not enough ingredients or bad recipe")
-                    break;
+            if (hasEnoughIngredientsForRecipe(state, action.payload)) {
+                state = consumeRecipeIngredients(state, action.payload)
+                state[action.payload] += 1
             }
         }
     }
@@ -57,7 +54,7 @@ export const inventorySlice = createSlice({
 
 export const selectInventory = (state:RootState):InventoryState => state.inventory;
 
-export const {addIngredient} = inventorySlice.actions;
+export const {addIngredient, makeRecipe} = inventorySlice.actions;
 
 
 export default inventorySlice.reducer;

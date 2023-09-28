@@ -18,7 +18,7 @@ const LeftSidebar = (props) => {
                 paddingLeft: '16px  '
             }}>
                 <p>Sidebar content below</p>
-
+                <hr />
                 {props.children}
             </div>
         </div>
