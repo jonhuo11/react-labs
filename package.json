@@ -1,78 +1,78 @@
 {
-    "name": "react-labs",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "@reduxjs/toolkit": "^1.9.5",
-        "@testing-library/jest-dom": "^5.16.4",
-        "@testing-library/react": "^13.2.0",
-        "@testing-library/user-event": "^13.5.0",
-        "@types/d3": "^7.4.0",
-        "@types/jest": "^27.5.1",
-        "@types/node": "^17.0.33",
-        "@types/react": "^18.0.9",
-        "@types/react-dom": "^18.0.4",
-        "d3": "^7.6.1",
-        "immer": "^9.0.12",
-        "lodash": "^4.17.21",
-        "prop-types": "^15.8.1",
-        "react": "^18.1.0",
-        "react-dom": "^18.1.0",
-        "react-icons": "^4.4.0",
-        "react-redux": "^8.1.2",
-        "react-scripts": "5.0.1",
-        "rxjs": "^7.5.6",
-        "typescript": "^4.6.4",
-        "uuid": "^8.3.2",
-        "web-vitals": "^2.1.4"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "storybook": "start-storybook -p 6006 -s public",
-        "build-storybook": "build-storybook -s public"
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
+  "name": "react-labs",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
+    "@storybook/test": "^8.0.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.2.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/d3": "^7.4.0",
+    "@types/jest": "^27.5.1",
+    "@types/node": "^17.0.33",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.4",
+    "d3": "^7.6.1",
+    "immer": "^9.0.12",
+    "lodash": "^4.17.21",
+    "prop-types": "^15.8.1",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-icons": "^4.4.0",
+    "react-redux": "^8.1.2",
+    "react-scripts": "5.0.1",
+    "rxjs": "^7.5.6",
+    "typescript": "^4.6.4",
+    "uuid": "^8.3.2",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -s public"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
         ],
-        "overrides": [
-            {
-                "files": [
-                    "**/*.stories.*"
-                ],
-                "rules": {
-                    "import/no-anonymous-default-export": "off"
-                }
-            }
-        ]
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
-    "devDependencies": {
-        "@storybook/addon-actions": "^6.5.6",
-        "@storybook/addon-essentials": "^6.5.6",
-        "@storybook/addon-interactions": "^6.5.6",
-        "@storybook/addon-links": "^6.5.6",
-        "@storybook/builder-webpack5": "^6.5.6",
-        "@storybook/manager-webpack5": "^6.5.6",
-        "@storybook/node-logger": "^6.5.6",
-        "@storybook/preset-create-react-app": "^4.1.1",
-        "@storybook/react": "^6.5.6",
-        "@storybook/testing-library": "^0.0.11",
-        "webpack": "^5.72.1"
-    }
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^8.0.0",
+    "@storybook/addon-essentials": "^8.0.0",
+    "@storybook/addon-interactions": "^8.0.0",
+    "@storybook/addon-links": "^8.0.0",
+    "@storybook/node-logger": "^8.0.0",
+    "@storybook/preset-create-react-app": "^8.0.0",
+    "@storybook/react": "^8.0.0",
+    "@storybook/react-webpack5": "^8.0.0",
+    "storybook": "^8.0.0",
+    "webpack": "^5.72.1"
+  }
 }
